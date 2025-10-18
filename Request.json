@@ -1,0 +1,20 @@
+{
+  "email": "24f3003761@ds.study.iitm.ac.in",
+  "secret": "miles2go",
+  "task": "captcha-solver-miles2go",
+  "round": 1,
+  "nonce": "ab12-miles2go",
+  // brief: mentions what the app needs to do
+  "brief": "Create a captcha solver that handles ?url=https://.../image.png. Default to attached sample.",
+  // checks: mention how it will be evaluated
+  "checks": [
+    "Repo has MIT license"
+    "README.md is professional",
+    "Page displays captcha URL passed at ?url=...",
+    "Page displays solved captcha text within 15 seconds",
+  ],
+  // Send repo & commit details to the URL below
+  "evaluation_url": "https://example.com/notify",
+  // Attachments will be encoded as data URIs
+  "attachments": [{ "name": "sample.png", "url": "data:image/png;base64,iVBORw..." }]
+}
