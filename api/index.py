@@ -30,7 +30,7 @@ class RegionMetricsModel(BaseModel):
 def read_root():
     return {"message": "Hello, World!"}
 
-@app.post("/latency", response_model=list[RegionMetricsModel])
+@app.post("/api/latency", response_model=list[RegionMetricsModel])
 def get_region_metrics(data: RegionsThresholdModel):
     df_metrics = pd.read_csv("q-vercel-metrics.csv")
     df_filtered = df_metrics[df_metrics["region"].isin(data.regions)]
