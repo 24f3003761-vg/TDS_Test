@@ -33,7 +33,7 @@ def read_root():
 
 @app.post("/api/latency", response_model=list[RegionMetricsModel])
 def get_region_metrics(data: RegionsThresholdModel):
-    df_metrics = pd.read_csv("q-vercel-metrics.csv")
+    df_metrics = pd.read_json("q-vercel-latency.json")
     df_filtered = df_metrics[df_metrics["region"].isin(data.regions)]
     
     result = []
