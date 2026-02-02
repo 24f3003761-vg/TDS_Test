@@ -9,12 +9,12 @@ app = FastAPI()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],        # allow any origin
+    # allow_origins=["*"],        # allow any origin
     # allow_credentials=False,    # must be False with "*"
-    # allow_origins=[
-    #    "https://exam.sanand.workers.dev"
-    #],
-    #allow_credentials=True,
+    allow_origins=[
+       "https://exam.sanand.workers.dev/tds-2026-01-ee"
+    ],
+    allow_credentials=True,
     allow_methods=["*"],        # includes OPTIONS + POST
     allow_headers=["*"],
 )
@@ -38,24 +38,6 @@ async def root():
 @app.get("/")
 def read_root():
     return {"message": "Hello, World!"}
-
-# Handle POST + OPTIONS preflight
-@app.api_route("/api/latency", methods=["GET", "POST", "OPTIONS"])
-async def latency(request: Request):
-    if request.method == "OPTIONS":
-        # Preflight request
-        return JSONResponse({}, status_code=204)
-
-    # Parse JSON body for POST
-    payload = await request.json() if request.method == "POST" else {}
-
-    # Example response (replace with real logic)
-    response_data = [
-        {"region":"emea","avg_latency":175.31,"p95_latency":225.49,"avg_uptime":98.33,"breaches":6},
-        {"region":"apac","avg_latency":157.55,"p95_latency":200.61,"avg_uptime":98.11,"breaches":2}
-    ]
-
-    return JSONResponse(response_data)
 
 @app.post("/api/latency", response_model=list[RegionMetricsModel])
 def get_region_metrics(data: RegionsThresholdModel):
