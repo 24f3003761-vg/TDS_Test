@@ -11,12 +11,12 @@ app.add_middleware(
     CORSMiddleware,
     # allow_origins=["*"],        # allow any origin
     # allow_credentials=False,    # must be False with "*"
-    allow_methods=["*"],        # includes OPTIONS + POST
-    allow_headers=["*"],
     allow_origins=[
         "https://exam.sanand.workers.dev"
     ],
     allow_credentials=True,
+    allow_methods=["*"],        # includes OPTIONS + POST
+    allow_headers=["*"],
 )
 
 # Request body schema
