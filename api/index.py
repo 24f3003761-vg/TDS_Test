@@ -42,7 +42,7 @@ def get_region_metrics(data: RegionsThresholdModel):
         if not df_region.empty:
             avg_latency = df_region["latency_ms"].mean()
             p95_latency = df_region["latency_ms"].quantile(0.95)
-            avg_uptime = df_region["uptime_percent"].mean()
+            avg_uptime = df_region["uptime_pct"].mean()
             breaches = (df_region["latency_ms"] > data.threshold_ms).sum()
             
             region_metrics = RegionMetricsModel(
