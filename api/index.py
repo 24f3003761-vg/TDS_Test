@@ -31,6 +31,10 @@ class RegionMetricsModel(BaseModel):
     avg_uptime: float
     breaches: int
 
+@app.api_route("/", methods=["GET", "POST", "OPTIONS", "HEAD"])
+async def root():
+    return {"status": "ok"}
+
 @app.get("/")
 def read_root():
     return {"message": "Hello, World!"}
