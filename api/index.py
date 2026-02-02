@@ -39,7 +39,7 @@ async def root():
 def read_root():
     return {"message": "Hello, World!"}
 
-@app.post("/api/latency", response_model=list[RegionMetricsModel], methods=["GET", "POST", "OPTIONS", "HEAD"])
+@app.post("/api/latency", response_model=list[RegionMetricsModel])
 def get_region_metrics(data: RegionsThresholdModel):
     df_metrics = pd.read_json("q-vercel-latency.json")
     df_filtered = df_metrics[df_metrics["region"].isin(data.regions)]
