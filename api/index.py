@@ -9,12 +9,12 @@ app = FastAPI()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    # allow_origins=["*"],        # allow any origin
+    allow_origins=["*"],        # allow any origin
     # allow_credentials=False,    # must be False with "*"
-    allow_origins=[
-        "https://exam.sanand.workers.dev"
-    ],
-    allow_credentials=True,
+    # allow_origins=[
+    #    "https://exam.sanand.workers.dev"
+    #],
+    #allow_credentials=True,
     allow_methods=["*"],        # includes OPTIONS + POST
     allow_headers=["*"],
 )
@@ -39,7 +39,7 @@ async def root():
 def read_root():
     return {"message": "Hello, World!"}
 
-@app.post("/api/latency", response_model=list[RegionMetricsModel])
+@app.post("/api/latency", response_model=list[RegionMetricsModel], methods=["GET", "POST", "OPTIONS", "HEAD"])
 def get_region_metrics(data: RegionsThresholdModel):
     df_metrics = pd.read_json("q-vercel-latency.json")
     df_filtered = df_metrics[df_metrics["region"].isin(data.regions)]
@@ -63,3 +63,5 @@ def get_region_metrics(data: RegionsThresholdModel):
             result.append(region_metrics)
     
     return result
+
+
