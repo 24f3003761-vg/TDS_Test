@@ -12,7 +12,7 @@ app.add_middleware(
     # allow_origins=["*"],        # allow any origin
     # allow_credentials=False,    # must be False with "*"
     allow_origins=[
-       "https://exam.sanand.workers.dev/tds-2026-01-ee"
+       "https://exam.sanand.workers.dev"
     ],
     allow_credentials=True,
     allow_methods=["*"],        # includes OPTIONS + POST
