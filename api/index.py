@@ -1,7 +1,23 @@
+# api/index.py
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import pandas as pd
 
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],        # allow any origin
+    # allow_credentials=False,    # must be False with "*"
+    #allow_origins=[
+    #   "https://exam.sanand.workers.dev"
+    #],
+    #allow_credentials=True,
+    allow_methods=["*"],        # includes OPTIONS + POST
+    allow_headers=["*"],
+)
 
 class InferenceRequest(BaseModel):
     audio_id: str
